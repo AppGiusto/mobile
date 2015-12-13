@@ -1,0 +1,94 @@
+# ============================================
+# CocoaPods
+# The best way to manage library dependencies
+# in Objective-C projects.
+# @see http://cocoapods.org
+# @see http://docs.cocoapods.org
+# ============================================
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+# iOS Platform
+platform :ios, '7.0'
+
+# Inhibits all the warnings from the CocoaPods libraries.
+inhibit_all_warnings!
+
+# Specifies the Xcode workspace that should contain all
+# the projects.
+workspace 'Giusto'
+
+# pod 'HockeySDK', '~>3.6.1'
+
+# pod 'MTDates', :git=> 'https://github.com/jtrobman/MTDates'
+
+# pod 'ParseModel', :path => '../../../../Open-Source-Projects/ParseModel-iOS'
+# pod 'ParseModel', :git=> 'https://github.com/premosystems/ParseModel-iOS'
+
+# pod 'PFIncrementalStore', :path => '../../../../Open-Source-Projects/PFIncrementalStore'
+# pod 'PFIncrementalStore', :git =>  'https://github.com/sbonami/PFIncrementalStore'
+
+# pod 'MyiOSHelpers', :path => '../../../../Open-Source-Projects/MyiOSHelpers'
+# pod 'MyiOSHelpers', :git=> 'https://github.com/premosystems/MyiOSHelpers.git'
+# pod 'MyiOSHelpers', '~>1.0.6'
+
+# pod 'MyiOSViewHelpers', :path => '../../../../Open-Source-Projects/MyiOSViewHelpers'
+# pod 'MyiOSViewHelpers', :git=> 'https://github.com/premosystems/MyiOSViewHelpers.git'
+# pod 'MyiOSViewHelpers', '~>1.0.1'
+
+# pod 'MyEnvironmentConfig', :path => '../../../../Open-Source-Projects/MyEnvironmentConfig'
+# pod 'MyEnvironmentConfig', :git=> 'https://github.com/premosystems/MyEnvironmentConfig.git'
+
+# pod 'GIModel', :path => './Model'
+
+pod 'AFNetworking', '~> 2.3.1'
+pod 'CocoaLumberjack', '~> 2.0.0-beta4'
+pod 'MBProgressHUD', '~> 0.9'
+pod 'DCKeyValueObjectMapping', '~> 1.4'
+# pod 'LumberjackPrettyClassInformation', '~> 1.0.0'
+pod 'ReactiveCocoa', '~> 2.3.1'
+pod 'KPAStoryboardConvenience', '~> 1.0.1'
+pod 'EDColor', '~> 0.4.0'
+pod 'MMDrawerController', '~> 0.5.7'
+pod 'US2FormValidator', '~> 1.1.2'
+pod 'ALPValidator', '~> 0.0.5'
+pod 'CWStatusBarNotification', '~> 2.2.2'
+pod 'APLKeyboardControls', '~> 0.1.2'
+pod 'DZNEmptyDataSet', '~> 1.4.1'
+pod 'Underscore.m', '~> 0.2.1'
+pod 'MagicalRecord', '~> 2.2'
+pod 'NSTimer-Blocks', '~> 0.0.1'
+pod 'Helpshift'
+# pod 'FlurrySDK', '~> 5.4.0'
+# pod 'Appsee', '~> 2.1.2'
+pod 'TPKeyboardAvoiding', '~> 1.2.6'
+pod 'Heap'
+pod 'Intercom'
+pod 'Ubertesters'
+
+# pod 'Bolts'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+
+pod 'Parse'
+pod 'ParseFacebookUtilsV4'
+
+target :GiustoTests do
+    pod 'XCTAsyncTestCase', '~>0.1.0'
+end
+
+pod 'MTDates', '~>0.13.0'
+pod 'DateTools', '~>1.4.3'
+
+
+# Remove 64-bit build architecture from Pods targets
+post_install do |installer|
+    installer.project.targets.each do |target|
+        target.build_configurations.each do |configuration|
+            target.build_settings(configuration.name)['ARCHS'] = '$(ARCHS_STANDARD)'
+            target.build_settings(configuration.name)['ONLY_ACTIVE_ARCH'] = 'NO'
+            target.build_settings(configuration.name)['VALID_ARCHS'] = 'armv7 armv7s arm64'
+        end
+    end
+end
